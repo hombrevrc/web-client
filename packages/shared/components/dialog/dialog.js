@@ -8,30 +8,67 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { translate } from "react-i18next";
+import posed from "react-pose";
+
+const DialogBox = posed.div({
+  opened: {
+    transform: "scale(1)",
+    opacity: 1,
+    transition: { duration: 200 }
+  },
+  closed: {
+    transform: "scale(0)",
+    opacity: 0,
+    transition: { duration: 200 }
+  }
+});
 
 class Dialog extends Component {
+  state = {
+    isOpen: false
+  };
+  handleOpen = () => {
+    this.setState({ isOpen: true });
+  };
+  handleClose = () => {
+    this.setState({ isOpen: false });
+  };
+  handlePoseComplete = event => {
+    if (event === "closed") {
+      this.props.onClose();
+    }
+  };
   render() {
     const { t } = this.props;
     return (
-      <Modal open={this.props.open} fixed disableBackdropClick>
+      <Modal
+        open={this.props.open}
+        fixed
+        disableBackdropClick
+        handleOpen={this.handleOpen}
+      >
         <Scrollbars>
           <div className="dialog__content">
             <div className="dialog__background" />
-            <div className="dialog__backdrop" onClick={this.props.onClose} />
+            <div className="dialog__backdrop" onClick={this.handleClose} />
             <GVButton
               variant="text"
               color="secondary"
               className="dialog__close dialog__close--outside"
-              onClick={this.props.onClose}
+              onClick={this.handleClose}
             >
               <CloseIcon /> {t("buttons.close")}
             </GVButton>
-            <div className={classnames("dialog", this.props.className)}>
+            <DialogBox
+              className={classnames("dialog", this.props.className)}
+              pose={this.state.isOpen ? "opened" : "closed"}
+              onPoseComplete={this.handlePoseComplete}
+            >
               <GVButton
                 variant="text"
                 color="secondary"
                 className="dialog__close dialog__close--inside"
-                onClick={this.props.onClose}
+                onClick={this.handleClose}
               >
                 <CloseIcon />
               </GVButton>
@@ -42,7 +79,7 @@ class Dialog extends Component {
               {this.props.bottom && (
                 <div className="dialog__bottom">{this.props.bottom}</div>
               )}
-            </div>
+            </DialogBox>
           </div>
         </Scrollbars>
       </Modal>

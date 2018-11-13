@@ -1,10 +1,12 @@
 import "./wallet-add-funds-form.scss";
 
+import WalletAddFundsForm from "modules/wallet-add-funds/components/wallet-add-funds-form";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { alertMessageActions } from "shared/modules/alert-message/actions/alert-message-actions";
 import { walletApiProxy } from "shared/services/api-client/wallet-api";
 import authService from "shared/services/auth-service";
+import { alertMessageActions } from "shared/modules/alert-message/actions/alert-message-actions";
+import Dialog from "shared/components/dialog/dialog";
 
 import WalletAddFundsForm from "./wallet-add-funds-form";
 
@@ -25,11 +27,13 @@ class WalletAddFundsContainer extends Component {
     if (!this.state.data) return null;
     const { wallets } = this.state.data;
     return (
-      <WalletAddFundsForm
-        wallets={wallets}
-        notifySuccess={this.props.notifySuccess}
-        notifyError={this.props.notifyError}
-      />
+      <Dialog open={this.props.open} onClose={this.props.onClose}>
+        <WalletAddFundsForm
+          wallets={wallets}
+          notifySuccess={this.props.notifySuccess}
+          notifyError={this.props.notifyError}
+        />
+      </Dialog>
     );
   }
 }

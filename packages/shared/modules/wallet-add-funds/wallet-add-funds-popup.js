@@ -1,25 +1,25 @@
+import Dialog from "shared/components/dialog/dialog";
+import WalletAddFundsPopup from "modules/wallet-add-funds/components/wallet-add-funds-container";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import Dialog from "shared/components/dialog/dialog";
 
-import WalletAddFundsContainer from "./components/wallet-add-funds-container";
-
-class WalletAddFundsPopup extends Component {
+class WalletAddFundsContainer extends Component {
   handleClose = () => {
     this.props.onClose();
   };
   render() {
     return (
-      <Dialog open={this.props.open} onClose={this.handleClose}>
-        <WalletAddFundsContainer />
-      </Dialog>
+      <WalletAddFundsPopup
+        open={this.props.open}
+        onClose={this.props.onClose}
+      />
     );
   }
 }
 
-WalletAddFundsPopup.propTypes = {
+WalletAddFundsContainer.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired
 };
 
-export default WalletAddFundsPopup;
+export default WalletAddFundsContainer;

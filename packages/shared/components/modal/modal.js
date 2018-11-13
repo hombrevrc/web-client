@@ -23,6 +23,12 @@ class Modal extends Component {
     }
   };
 
+  componentDidUpdate(prev) {
+    if (!prev.open && this.props.open) {
+      this.props.handleOpen && this.props.handleOpen();
+    }
+  }
+
   render() {
     const {
       open,
