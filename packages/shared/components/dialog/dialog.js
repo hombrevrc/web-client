@@ -14,12 +14,12 @@ const DialogBox = posed.div({
   opened: {
     transform: "scale(1)",
     opacity: 1,
-    transition: { duration: 200 }
+    transition: { duration: 300 }
   },
   closed: {
     transform: "scale(0)",
     opacity: 0,
-    transition: { duration: 200 }
+    transition: { duration: 300 }
   }
 });
 

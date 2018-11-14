@@ -2,6 +2,7 @@ import classnames from "classnames";
 import moment from "moment";
 import PropTypes from "prop-types";
 import React from "react";
+import posed from "react-pose";
 
 export const notificationProps = {
   date: PropTypes.instanceOf(Date),
@@ -14,9 +15,14 @@ export const notificationProps = {
   isUnread: PropTypes.bool
 };
 
+const NotificationBox = posed.div({
+  opened: { x: 0, opacity: 1 },
+  closed: { x: 20, opacity: 0 }
+});
+
 const Notification = ({ date, text, isUnread, type }) => {
   return (
-    <div
+    <NotificationBox
       className={classnames(
         "notification",
         `notification--type-${type.toLowerCase()}`,
@@ -31,7 +37,7 @@ const Notification = ({ date, text, isUnread, type }) => {
           {moment(date).format("hh:mm a")}
         </div>
       </div>
-    </div>
+    </NotificationBox>
   );
 };
 

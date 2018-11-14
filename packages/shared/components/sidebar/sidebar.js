@@ -11,14 +11,12 @@ class Sidebar extends Component {
     super(props);
     this.box = posed.div({
       opened: {
-        transform: "translateX(0%)",
-        transition: { duration: 100 }
+        x: "0%",
+        transition: { duration: 300 }
       },
       closed: {
-        transform: `translateX(${
-          props.position === "right" ? "100%" : "-100%"
-        })`,
-        transition: { duration: 100 }
+        x: `${props.position === "right" ? "100" : "-100"}%`,
+        transition: { duration: 300 }
       }
     });
   }
