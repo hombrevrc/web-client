@@ -1,10 +1,10 @@
 import "./sidebar.scss";
 
 import * as classnames from "classnames";
-import Modal from "shared/components/modal/modal";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import posed from "react-pose";
+import Modal from "shared/components/modal/modal";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -32,6 +32,9 @@ class Sidebar extends Component {
   handlePoseComplete = event => {
     if (event === "closed") {
       this.props.onClose();
+    }
+    if (event === "opened") {
+      this.props.onOpen && this.props.onOpen();
     }
   };
   render() {

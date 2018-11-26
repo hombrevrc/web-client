@@ -1,10 +1,5 @@
 import "./notifications.scss";
 
-import Chip from "shared/components/chip/chip";
-import { ControlsIcon } from "shared/components/icon/icon";
-import { RingIcon } from "shared/components/icon/ring-icon";
-import InfinityScroll from "shared/components/infinity-scroll/inifinity-scroll";
-import Spinner from "shared/components/spiner/spiner";
 import moment from "moment";
 import NotificationsGroup from "pages/app/components/notifications/components/notification-group/notification-group";
 import { notificationProps } from "pages/app/components/notifications/components/notification/notification";
@@ -13,20 +8,12 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router-dom";
+import Chip from "shared/components/chip/chip";
+import { ControlsIcon } from "shared/components/icon/icon";
+import { RingIcon } from "shared/components/icon/ring-icon";
+import InfinityScroll from "shared/components/infinity-scroll/inifinity-scroll";
 
 class Notifications extends Component {
-  state = {
-    isPending: false
-  };
-
-  fetchNotification = () => {
-    if (this.state.isPending) return;
-    this.setState({ isPending: true });
-    this.props.fetchNotifications().then(() => {
-      this.setState({ isPending: false });
-    });
-  };
-
   getGroups = notifications => {
     const { t } = this.props;
     return notifications.reduce((acc, notification) => {
@@ -56,14 +43,6 @@ class Notifications extends Component {
 
   sortGroups = (a, b) => b - a;
 
-  componentDidMount() {
-    this.fetchNotification();
-  }
-
-  componentWillUnmount() {
-    this.props.clearNotifications();
-  }
-
   render() {
     const { t } = this.props;
     const { notifications, total, count } = this.props;
@@ -72,7 +51,10 @@ class Notifications extends Component {
     const hasNotifications = count > 0;
     return (
       <div className="notifications">
-        <InfinityScroll loadMore={this.fetchNotification} hasMore={hasMore}>
+        <InfinityScroll
+          loadMore={this.props.fetchNotifications}
+          hasMore={hasMore}
+        >
           <div className="notifications__header">
             <div className="notifications__ring">
               <RingIcon />
@@ -94,7 +76,6 @@ class Notifications extends Component {
             {Object.keys(groups)
               .sort(this.sortGroups)
               .map(this.renderGroups(groups))}
-            <Spinner isShown={this.state.isPending} />
           </div>
         </InfinityScroll>
       </div>
