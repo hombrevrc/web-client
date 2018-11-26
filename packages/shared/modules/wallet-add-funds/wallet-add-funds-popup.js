@@ -1,25 +1,46 @@
-import Dialog from "shared/components/dialog/dialog";
-import WalletAddFundsPopup from "modules/wallet-add-funds/components/wallet-add-funds-container";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import Dialog from "shared/components/dialog/dialog";
+import { walletApiProxy } from "shared/services/api-client/wallet-api";
+import authService from "shared/services/auth-service";
 
-class WalletAddFundsContainer extends Component {
+import WalletAddFundsForm from "./components/wallet-add-funds-form";
+
+class WalletAddFundsPopup extends Component {
   handleClose = () => {
     this.props.onClose();
   };
+
+  state = {
+    isPending: false,
+    data: null
+  };
+
+  componentDidMount() {
+    this.setState({ isPending: true });
+    walletApiProxy
+      .v10WalletAddressesGet(authService.getAuthArg())
+      .then(data => this.setState({ ...data }));
+  }
+
   render() {
+    if (!this.state.data) return null;
+    const { wallets } = this.state.data;
     return (
-      <WalletAddFundsPopup
-        open={this.props.open}
-        onClose={this.props.onClose}
-      />
+      <Dialog open={this.props.open} onClose={this.props.onClose}>
+        <WalletAddFundsForm
+          wallets={wallets}
+          notifySuccess={this.props.notifySuccess}
+          notifyError={this.props.notifyError}
+        />
+      </Dialog>
     );
   }
 }
 
-WalletAddFundsContainer.propTypes = {
+WalletAddFundsPopup.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func.isRequired
 };
 
-export default WalletAddFundsContainer;
+export default WalletAddFundsPopup;

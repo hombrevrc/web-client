@@ -1,12 +1,11 @@
 import "./wallet-add-funds-form.scss";
 
-import WalletAddFundsForm from "modules/wallet-add-funds/components/wallet-add-funds-form";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Dialog from "shared/components/dialog/dialog";
+import { alertMessageActions } from "shared/modules/alert-message/actions/alert-message-actions";
 import { walletApiProxy } from "shared/services/api-client/wallet-api";
 import authService from "shared/services/auth-service";
-import { alertMessageActions } from "shared/modules/alert-message/actions/alert-message-actions";
-import Dialog from "shared/components/dialog/dialog";
 
 import WalletAddFundsForm from "./wallet-add-funds-form";
 
