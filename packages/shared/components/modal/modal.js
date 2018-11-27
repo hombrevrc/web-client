@@ -39,8 +39,8 @@ class Modal extends Component {
     }
   };
 
-  componentDidUpdate(prev) {
-    if (!prev.open && this.props.open) {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.open && this.props.open) {
       this.props.onOpen && this.props.onOpen();
     }
   }

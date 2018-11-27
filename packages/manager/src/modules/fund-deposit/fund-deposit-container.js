@@ -33,16 +33,22 @@ const FundDepositContainer = props => {
         }
       });
   };
+
+  const handleOpen = () => {
+    props.service.getDepositFundInfoById(id);
+  };
+
   return (
-    <Dialog open={props.open} onClose={handleClose}>
-      <DepositPopup
-        submitInfo={props.submitInfo}
-        currency={props.currency}
-        info={props.info.data}
-        id={props.id}
-        fetchInfo={props.service.getDepositFundInfoById}
-        invest={handleInvest}
-      />
+    <Dialog open={props.open} onClose={handleClose} onOpen={handleOpen}>
+      {props.info.data ? (
+        <DepositPopup
+          submitInfo={props.submitInfo}
+          currency={props.currency}
+          info={props.info.data}
+          id={props.id}
+          invest={handleInvest}
+        />
+      ) : null}
     </Dialog>
   );
 };
@@ -78,6 +84,7 @@ const mapDispatchToProps = dispatch => ({
   )
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FundDepositContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FundDepositContainer);

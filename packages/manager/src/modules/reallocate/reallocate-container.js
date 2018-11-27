@@ -24,14 +24,14 @@ class ReallocateContainer extends Component {
     return target;
   };
 
-  componentDidMount() {
+  handleOpen = () => {
     createFundService.fetchAssets().then(response => {
       const assets = this.fillAssets(response.assets, this.props.assets);
       this.setState({
         assets: assets
       });
     });
-  }
+  };
 
   render() {
     const { service, id, remainder, submitInfo, open, onClose } = this.props;
@@ -50,16 +50,17 @@ class ReallocateContainer extends Component {
       this.setState({ serverError: "" });
       onClose();
     };
-    if (!assets.length) return null;
     return (
-      <Dialog open={open} onClose={handleClose}>
-        <ReallocatePopup
-          assets={assets}
-          remainder={remainder}
-          reallocate={handleApply}
-          submitInfo={submitInfo}
-          serverError={this.state.serverError}
-        />
+      <Dialog open={open} onClose={handleClose} onOpen={this.handleOpen}>
+        {assets.length ? (
+          <ReallocatePopup
+            assets={assets}
+            remainder={remainder}
+            reallocate={handleApply}
+            submitInfo={submitInfo}
+            serverError={this.state.serverError}
+          />
+        ) : null}
       </Dialog>
     );
   }

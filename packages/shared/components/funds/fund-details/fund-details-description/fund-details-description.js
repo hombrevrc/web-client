@@ -236,7 +236,6 @@ class FundDetailsDescription extends PureComponent {
                         )}
                         {ReallocateContainer && (
                           <ReallocateContainer
-                            key={isOpenReallocateFundPopup}
                             id={fundDescription.id}
                             open={isOpenReallocateFundPopup}
                             onClose={this.handleCloseReallocateFundPopup(

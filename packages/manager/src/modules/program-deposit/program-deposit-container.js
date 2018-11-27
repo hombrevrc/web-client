@@ -33,18 +33,24 @@ const ProgramDepositContainer = props => {
         }
       });
   };
+
+  const handleOpen = () => {
+    props.service.getDepositProgramInfoById(id);
+  };
+
   return (
-    <Dialog open={props.open} onClose={handleClose}>
-      <DepositPopup
-        program
-        submitInfo={props.submitInfo}
-        currency={props.currency}
-        info={props.info.data}
-        id={props.id}
-        fetchInfo={props.service.getDepositProgramInfoById}
-        invest={handleInvest}
-        type={type}
-      />
+    <Dialog open={props.open} onClose={handleClose} onOpen={handleOpen}>
+      {props.info.data ? (
+        <DepositPopup
+          program
+          submitInfo={props.submitInfo}
+          currency={props.currency}
+          info={props.info.data}
+          id={props.id}
+          invest={handleInvest}
+          type={type}
+        />
+      ) : null}
     </Dialog>
   );
 };

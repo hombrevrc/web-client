@@ -16,11 +16,13 @@ import {
 
 const FundDepositContainer = props => {
   const { service, id, onInvest } = props;
+
   const handleClose = () => {
     props.onClose();
     props.service.clearDepositFundInfo();
     props.service.clearInvestSubmitFund();
   };
+
   const handleInvest = amount => {
     service
       .investServiceInvestById({
@@ -34,17 +36,23 @@ const FundDepositContainer = props => {
         }
       });
   };
+
+  const handleOpen = () => {
+    props.service.getDepositFundInfoById(id);
+  };
+
   return (
-    <Dialog open={props.open} onClose={handleClose}>
-      <DepositPopup
-        entryFee
-        submitInfo={props.submitInfo}
-        currency={props.currency}
-        info={props.info.data}
-        id={props.id}
-        fetchInfo={props.service.getDepositFundInfoById}
-        invest={handleInvest}
-      />
+    <Dialog open={props.open} onClose={handleClose} onOpen={handleOpen}>
+      {props.info.data ? (
+        <DepositPopup
+          entryFee
+          submitInfo={props.submitInfo}
+          currency={props.currency}
+          info={props.info.data}
+          id={props.id}
+          invest={handleInvest}
+        />
+      ) : null}
     </Dialog>
   );
 };

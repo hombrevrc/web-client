@@ -6,10 +6,6 @@ import PropTypes from "prop-types";
 import React, { Component, Fragment } from "react";
 
 class DepositPopup extends Component {
-  componentDidMount() {
-    this.props.fetchInfo(this.props.id);
-  }
-
   render() {
     const {
       info,
@@ -20,7 +16,7 @@ class DepositPopup extends Component {
       entryFee,
       program
     } = this.props;
-    return info ? (
+    return (
       <Fragment>
         <DepositTop info={info} type={type} program={program} />
         <DepositForm
@@ -33,7 +29,7 @@ class DepositPopup extends Component {
           onSubmit={invest}
         />
       </Fragment>
-    ) : null;
+    );
   }
 }
 
