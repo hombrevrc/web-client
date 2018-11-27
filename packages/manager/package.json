@@ -68,7 +68,8 @@
     "react-app-rewire-yarn-workspaces": "^1.0.3",
     "react-app-rewired": "^1.6.2",
     "react-test-renderer": "^16.3.2",
-    "redux-devtools": "^3.4.1"
+    "redux-devtools": "^3.4.1",
+    "stylelint": "^9.8.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
