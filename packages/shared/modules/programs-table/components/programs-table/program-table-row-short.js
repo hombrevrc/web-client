@@ -14,6 +14,7 @@ import { formatValue } from "shared/utils/formatter";
 import classnames from "classnames";
 
 import { composeProgramDetailsUrl } from "shared/utils/compose-url";
+import AvatarTooltip from "shared/components/avatar-tooltip/avatar-tooltip";
 
 const ProgramTableRowShort = ({
   title,
@@ -50,12 +51,12 @@ const ProgramTableRowShort = ({
       {showRating && <TableCell>{rating.rating}</TableCell>}
       <TableCell className="programs-table__cell programs-table__cell--name">
         <div className="programs-table__cell--avatar-title">
-          <Link
-            to={{
-              pathname: composeProgramDetailsUrl(url),
-              state: `/ ${title}`
-            }}
-            onClick={stopPropagationEvent}
+          <Tooltip
+            render={() => (
+              <div>
+                {formatValue(statistic.balanceBase.amount)} {currency}
+              </div>
+            )}
           >
             <AssetAvatar
               url={logo}
@@ -63,7 +64,7 @@ const ProgramTableRowShort = ({
               alt={program.title}
               color={color}
             />
-          </Link>
+          </Tooltip>
           <div className="programs-table__cell--title">
             <div className="programs-table__cell--top">
               <Link
