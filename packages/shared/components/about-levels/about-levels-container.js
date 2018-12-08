@@ -4,13 +4,21 @@ import React, { Component } from "react";
 import { CURRENCY_VALUES } from "shared/modules/currency-select/currency-select.constants";
 import rateApi from "shared/services/api-client/rate-api";
 
+import platformApi from "../../services/api-client/platform-api";
 import AboutLevelsComponent from "./about-levels";
 
 class AboutLevelsContainerComponent extends Component {
   state = {
+    levels: null,
     currency: CURRENCY_VALUES.GVT,
     rate: 1
   };
+  componentDidMount() {
+    platformApi
+      .v10PlatformLevelsGet()
+      .then(levels => this.setState({ levels }));
+  }
+
   handlerCurrencyChange = e => {
     this.setState({ currency: e.target.value });
     rateApi
@@ -20,14 +28,17 @@ class AboutLevelsContainerComponent extends Component {
       });
   };
   render() {
+    const { open, onClose } = this.props;
+    const { rate, levels, currency } = this.state;
     return (
       <AboutLevelsComponent
-        open={this.props.open}
-        onClose={this.props.onClose}
+        open={open}
+        onClose={onClose}
         className="about-levels__dialog"
-        rate={this.state.rate}
-        currency={this.state.currency}
+        rate={rate}
+        currency={currency}
         currencyChange={this.handlerCurrencyChange}
+        levels={levels}
       />
     );
   }

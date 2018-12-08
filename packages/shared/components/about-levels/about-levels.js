@@ -20,7 +20,7 @@ class AboutLevelsComponent extends Component {
     );
   };
   render() {
-    const { t, open, onClose, rate } = this.props;
+    const { t, open, onClose, rate, levels } = this.props;
     return (
       <Dialog wider open={open} onClose={onClose} className="about-levels">
         <div className="about-levels__container">
