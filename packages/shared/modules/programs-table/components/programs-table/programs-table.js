@@ -36,6 +36,7 @@ class ProgramsContainer extends Component {
     } = this.props;
     return (
       <ProgramsTableModule
+        itemsName={`programs-page.items-name`}
         enableFiltering={enableFiltering}
         showSwitchView={showSwitchView}
         title={title}

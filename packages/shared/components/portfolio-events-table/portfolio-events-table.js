@@ -40,6 +40,9 @@ class PortfolioEventsTable extends Component {
     return (
       <div className={className}>
         <TableModule
+          itemsName={`${
+            process.env.REACT_APP_PLATFORM
+          }.dashboard-page.portfolio-events.items-name`}
           title={tableTitle}
           defaultFilters={PORTFOLIO_EVENTS_FILTERS}
           getItems={fetchPortfolioEvents}

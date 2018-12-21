@@ -35,7 +35,8 @@ const ProgramsTableModule = ({
   toggleFavorite,
   redirectToLogin,
   isAuthenticated,
-  title
+  title,
+  itemsName
 }) => {
   const selectFilterValues = [
     { value: undefined, label: "All" },
@@ -43,6 +44,7 @@ const ProgramsTableModule = ({
   ];
   return (
     <Table
+      itemsName={itemsName}
       disableTitle={disableTitle}
       title={title}
       showSwitchView={showSwitchView}

@@ -21,10 +21,12 @@ const FundsTableModule = ({
   updatePaging,
   toggleFavorite,
   isAuthenticated,
-  title
+  title,
+  itemsName
 }) => {
   return (
     <Table
+      itemsName={itemsName}
       title={title}
       sorting={sorting}
       updateSorting={updateSorting}

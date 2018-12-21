@@ -61,6 +61,7 @@ class WalletTransactions extends Component {
       <Surface className="wallet-transactions">
         {(this.state.transactionsCount && (
           <TableContainer
+            itemsName={"wallet-page.transactions.items-name"}
             isFetchOnMount
             title={t("wallet-page.transactions.title")}
             getItems={fetchWalletTransactions}

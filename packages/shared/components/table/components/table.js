@@ -55,7 +55,8 @@ class Table extends Component {
       updatePaging,
       isPending,
       emptyMessage,
-      updateRow
+      updateRow,
+      itemsName
     } = this.props;
     if (!items && emptyMessage) return emptyMessage;
     return (
@@ -116,6 +117,7 @@ class Table extends Component {
         </Scrollbars>
         {paging && (
           <TableFooter
+            itemsName={itemsName}
             paging={paging}
             updatePaging={updatePaging}
             isPending={isPending}

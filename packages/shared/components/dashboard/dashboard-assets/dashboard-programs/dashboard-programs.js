@@ -36,6 +36,9 @@ class DashboardPrograms extends Component {
     } = this.props;
     return (
       <TableContainer
+        itemsName={`${
+          process.env.REACT_APP_PLATFORM
+        }.dashboard-page.assets.programs.items-name`}
         createButtonToolbar={createButtonToolbar}
         emptyMessage={createProgram}
         getItems={getDashboardPrograms}

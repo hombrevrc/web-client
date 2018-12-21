@@ -31,6 +31,7 @@ class ProgramTrades extends Component {
 
     return (
       <TableModule
+        itemsName={"program-details-page.history.items-name.trades"}
         getItems={this.fetchProgramTrades}
         defaultFilters={PROGRAM_TRADES_DEFAULT_FILTERS}
         filtering={PROGRAM_TRADES_FILTERS}

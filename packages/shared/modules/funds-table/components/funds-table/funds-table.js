@@ -31,6 +31,7 @@ class FundsTable extends Component {
     } = this.props;
     return (
       <FundsTableModule
+        itemsName={"funds-page.items-name"}
         title={title}
         data={data || {}}
         isPending={isPending}

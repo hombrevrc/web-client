@@ -1,8 +1,16 @@
 import React from "react";
 
 import Paging from "./paging/paging";
+import { translate } from "react-i18next";
 
-const ItemsCounter = ({ totalPages, currentPage, itemsOnPage, totalItems }) => {
+const Items = ({
+  totalPages,
+  currentPage,
+  itemsOnPage,
+  totalItems,
+  itemsName = "",
+  t
+}) => {
   if (!totalItems) return null;
   const from = (currentPage - 1) * itemsOnPage + 1;
   const to = Math.min(currentPage * itemsOnPage, totalItems);
@@ -14,17 +22,20 @@ const ItemsCounter = ({ totalPages, currentPage, itemsOnPage, totalItems }) => {
         fontSize: 14
       }}
     >
-      {`Showing ${from}-${to} of ${totalItems}`}
+      {`Showing ${from}-${to} of ${totalItems} `}
+      {t(itemsName, { count: 0 })}
     </span>
   );
 };
 
-const TableFooter = ({ isPending, paging, updatePaging }) => {
+const ItemsCounter = translate()(Items);
+
+const TableFooter = ({ isPending, paging, updatePaging, itemsName }) => {
   if (paging.totalPages <= 1) return null;
 
   return (
     <div className="table__footer">
-      <ItemsCounter {...paging} />
+      <ItemsCounter {...paging} itemsName={itemsName}/>
       <Paging
         paging={{ total: paging.totalPages, current: paging.currentPage }}
         hide={isPending}

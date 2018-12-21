@@ -244,6 +244,7 @@
   },
   "programs-page": {
     "title": "Programs",
+    "items-name": "programs",
     "tabs": {
       "explore": "Explore",
       "favorites": "Favorites"
@@ -266,6 +267,7 @@
   },
   "funds-page": {
     "title": "Funds",
+    "items-name": "funds",
     "tabs": {
       "explore": "Explore",
       "favorites": "Favorites"
@@ -433,6 +435,10 @@
       "about-levels": "About levels"
     },
     "history": {
+      "items-name": {
+        "trades": "trades",
+        "events": "events"
+      },
       "heading": "History",
       "tabs": {
         "trades": "Trades",
@@ -467,6 +473,10 @@
         "programs": "Programs",
         "funds": "Funds"
       }
+    },
+    "items-name": {
+      "programs": "programs",
+      "funds": "funds"
     }
   },
   "global-search-page": {
@@ -534,6 +544,7 @@
     "add-funds": "Add funds",
     "withdraw": "Withdraw",
     "transactions": {
+      "items-name": "transactions",
       "title": "Transactions",
       "empty-transactions": "There are no transactions",
       "date": "Date",
@@ -845,6 +856,7 @@
       "portfolio": "Portfolio",
       "favorite-programs": "Favorite programs",
       "portfolio-events": {
+        "items-name": "operations",
         "title": "Portfolio Events",
         "see-all-button": "See All",
         "table-title": "Operations",
@@ -878,6 +890,14 @@
           "AssetFinished": "Asset finished",
           "ProgramPeriodStats": "Program period stats",
           "ProgramPeriodEnds": "Programp period ends"
+        }
+      },
+      "assets": {
+        "programs": {
+          "items-name": "programs"
+        },
+        "funds": {
+          "items-name": "funds"
         }
       }
     }
@@ -958,6 +978,7 @@
         "deposit": "Deposit"
       },
       "portfolio-events": {
+        "items-name": "operations",
         "title": "Events",
         "see-all-button": "See All",
         "table-title": "Operations",
@@ -993,6 +1014,14 @@
           "AssetFinished": "Asset finished",
           "ProgramPeriodStats": "Program period stats",
           "ProgramPeriodEnds": "Programp period ends"
+        }
+      },
+      "assets": {
+        "programs": {
+          "items-name": "programs"
+        },
+        "funds": {
+          "items-name": "funds"
         }
       }
     },

@@ -31,6 +31,9 @@ class DashboardFunds extends Component {
     } = this.props;
     return (
       <TableContainer
+        itemsName={`${
+          process.env.REACT_APP_PLATFORM
+        }.dashboard-page.assets.funds.items-name`}
         createButtonToolbar={createButtonToolbar}
         emptyMessage={createFund}
         getItems={getDashboardFunds}

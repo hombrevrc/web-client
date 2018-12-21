@@ -40,6 +40,7 @@ class ManagerFunds extends Component {
     const { t, title, isAuthenticated } = this.props;
     return (
       <TableModule
+        itemsName={"manager-page.items-name.funds"}
         title={title}
         getItems={this.fetchManagerFunds}
         defaultFilters={MANAGER_DEFAULT_FILTERS}

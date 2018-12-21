@@ -42,6 +42,7 @@ class ManagerPrograms extends Component {
 
     return (
       <TableModule
+        itemsName={"manager-page.items-name.programs"}
         title={title}
         getItems={this.fetchManagerPrograms}
         defaultFilters={MANAGER_DEFAULT_FILTERS}
